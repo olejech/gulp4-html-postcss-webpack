@@ -1,0 +1,26 @@
+:root {
+  /* Page */
+  --container-width: 1200px;
+  --container-padding: 20px;
+
+  /* Fonts */
+  --font-family: -apple-system, blinkmacsystemfont, segoe ui, helvetica, arial,
+    sans-serif, apple color emoji, segoe ui emoji;
+  --font-size: 16px;
+  --line-height: 1.6;
+
+  /* Colors */
+  --white-color: #fff;
+  --black-color: #000;
+  --text-color: #343435;
+
+  /* Transition */
+  --duration: 0.25s ease-out;
+}
+
+/* Default phone */
+@custom-media --mq-sm (min-width: 576px); /* Landscape phone */
+@custom-media --mq-md (min-width: 768px); /* Tablet */
+@custom-media --mq-lg (min-width: 992px); /* Desktop */
+@custom-media --mq-xl (min-width: 1200px); /* XLarge desktop */
+@custom-media --mq-xxl (min-width: 1400px); /* XXLarge desktop */
