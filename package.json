@@ -26,6 +26,7 @@
     "babel-loader": "^8.2.2",
     "browser-sync": "^2.26.14",
     "cross-env": "^7.0.2",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-if": "^3.0.0",
     "gulp-postcss": "^9.0.0",

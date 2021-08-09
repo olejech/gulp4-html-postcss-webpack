@@ -10,6 +10,7 @@ const postCssCustomMedia = require('postcss-custom-media')
 const browserSync = require('browser-sync')
 const webpackStream = require('webpack-stream')
 const uglify = require('gulp-uglify')
+const del = require('del')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
@@ -19,7 +20,7 @@ const path = {
     css: './src/css/*.css',
     html: './src/*.html',
     js: './src/js/index.js',
-    images: './src/images/**/*.*',
+    images: './src/images/**',
   },
   build: {
     css: './build/css',
@@ -31,6 +32,7 @@ const path = {
     css: './src/css/**/*.css',
     html: './src/**/*.html',
     js: './src/js/**/*.js',
+    images: './src/images/**',
   },
 }
 
@@ -65,6 +67,8 @@ const images = () => {
     .pipe(browserSync.stream())
 }
 
+const clean = () => del('./build')
+
 const js = () => {
   return gulp
     .src(path.src.js)
@@ -98,8 +102,9 @@ const watch = () => {
   gulp.watch(path.watch.css, css)
   gulp.watch(path.watch.html, html)
   gulp.watch(path.watch.js, js)
+  gulp.watch(path.watch.images, images)
 }
 
-exports.dev = gulp.series(html, css, js, watch)
+exports.dev = gulp.series(html, css, js, images, watch)
 
-exports.build = gulp.series(gulp.parallel(html, css, js, images))
+exports.build = gulp.series(clean, gulp.parallel(html, css, js, images))
