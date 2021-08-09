@@ -70,7 +70,7 @@ const js = () => {
     .src(path.src.js)
     .pipe(
       webpackStream({
-        mode: env,
+        mode: process.env.NODE_ENV,
         output: {
           filename: 'bundle.js',
         },
@@ -93,12 +93,13 @@ const js = () => {
     .pipe(browserSync.stream())
 }
 
-exports.dev = () => {
+const watch = () => {
   browserSync.init({ server: './build' })
-
   gulp.watch(path.watch.css, css)
   gulp.watch(path.watch.html, html)
   gulp.watch(path.watch.js, js)
 }
+
+exports.dev = gulp.series(html, css, js, watch)
 
 exports.build = gulp.series(gulp.parallel(html, css, js, images))
